@@ -14,6 +14,9 @@ export class HeroDetailsComponent implements OnInit {
   @Input()
   hero : Hero;
 
+  @Input()
+  FBHero: FirebaseObjectObservable<Hero>;
+
   fb: AngularFire;
 
   constructor(af: AngularFire) {
@@ -23,4 +26,22 @@ export class HeroDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  saveHero() : void {
+    this.FBHero.set({
+      "id": this.hero.id,
+      "name": this.hero.name
+    });
+  }
+
+  deleteHero() : void {
+    this.FBHero.remove().then(_ =>
+      this.hero = null,
+      this.FBHero = null
+    );
+  }
+
+  cancel() : void {
+    this.hero = null;
+    this.FBHero = null;
+  }
 }

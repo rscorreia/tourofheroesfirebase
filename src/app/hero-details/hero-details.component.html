@@ -1,9 +1,38 @@
-
-<div *ngIf="hero">
-  <h2>{{hero.name}} details!</h2>
-  <div><label>id: </label>{{hero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="hero.name" placeholder="name"/>
+<div class="col-md-4" *ngIf="hero">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{hero.name}} details <span class="badge">ID: {{hero.id}}</span></h3>
+    </div>
+    <div class="panel-body">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Name: </span>
+        <input [(ngModel)]="hero.name" type="text" class="form-control" aria-describedby="basic-addon3">
+      </div>
+      <br>
+      <div class="text-right">
+        <button type="button" class="btn btn-primary" (click)="saveHero()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Salvar</button>
+        <button type="button" class="btn btn-danger" (click)="deleteHero()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</button>
+        <button type="button" class="btn btn-default" (click)="cancel()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+<!--<div>-->
+<!--<h1>{{ item | async | json }}</h1>-->
+<!--<input type="text" #newname placeholder="Name" />-->
+<!--<input type="text" #newsize placeholder="Size" />-->
+<!--<br />-->
+<!--<button (click)="save(newname.value)">Set Name</button>-->
+<!--<button (click)="update(newsize.value)">Update Size</button>-->
+<!--<button (click)="delete()">Delete</button>-->
+<!--</div>-->

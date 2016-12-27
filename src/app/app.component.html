@@ -2,6 +2,7 @@
   <h1>Tour Of Heroes - Firebase</h1>
 </div>
 <div class="col-md-8">
+  <h2>All Heroes</h2>
   <table class="table table-striped">
     <colgroup>
       <col width="50">
@@ -25,27 +26,12 @@
       </td>
     </tr>
   </table>
+  <button type="button" class="btn btn-primary" (click)="addHero()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar</button>
 </div>
-<app-hero-details [hero]="selectedHero"></app-hero-details>
+
+<app-hero-details [FBHero]="selectedFBHero" [hero]="selectedHero"></app-hero-details>
 
 
 
 
 
-
-
-
-
-
-
-
-
-<!--<div>-->
-  <!--<h1>{{ item | async | json }}</h1>-->
-  <!--<input type="text" #newname placeholder="Name" />-->
-  <!--<input type="text" #newsize placeholder="Size" />-->
-  <!--<br />-->
-  <!--<button (click)="save(newname.value)">Set Name</button>-->
-  <!--<button (click)="update(newsize.value)">Update Size</button>-->
-  <!--<button (click)="delete()">Delete</button>-->
-<!--</div>-->

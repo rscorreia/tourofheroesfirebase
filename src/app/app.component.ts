@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { Hero } from './model/hero';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-root',
@@ -12,19 +13,24 @@ export class AppComponent {
   heroes: FirebaseListObservable<Hero[]>;
   selectedHero: Hero;
   fb: AngularFire;
-  item: FirebaseObjectObservable<any>;
+  selectedFBHero: FirebaseObjectObservable<Hero>;
 
   constructor(af: AngularFire) {
     this.fb = af;
     this.heroes = af.database.list('/heroes');
-    this.item = af.database.object('/item');
   }
 
   onSelect(key: number): void {
-    this.fb.database.object('heroes/' + key).subscribe(snapshot => {
+    this.selectedFBHero = this.fb.database.object('heroes/' + key);
+    this.selectedFBHero.subscribe(snapshot => {
       this.selectedHero = snapshot
     });
   }
+
+  addHero() : void {
+
+  }
+
 
 
 
