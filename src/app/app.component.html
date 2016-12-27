@@ -1,4 +1,51 @@
-<div class="jumbotron">
-  {{title}}
+<div class="page-header">
+  <h1>Tour Of Heroes - Firebase</h1>
 </div>
+<div class="col-md-8">
+  <table class="table table-striped">
+    <colgroup>
+      <col width="50">
+      <col>
+      <col width="25">
+    </colgroup>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let hero of heroes | async">
+      <td>
+        {{hero.id}}
+      </td>
+      <td>
+        {{hero.name}}
+      </td>
+      <td>
+        <a href="#" class="glyphicon glyphicon-pencil" (click)="onSelect(hero.$key)"></a>
+      </td>
+    </tr>
+  </table>
+</div>
+<app-hero-details [hero]="selectedHero"></app-hero-details>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div>-->
+  <!--<h1>{{ item | async | json }}</h1>-->
+  <!--<input type="text" #newname placeholder="Name" />-->
+  <!--<input type="text" #newsize placeholder="Size" />-->
+  <!--<br />-->
+  <!--<button (click)="save(newname.value)">Set Name</button>-->
+  <!--<button (click)="update(newsize.value)">Update Size</button>-->
+  <!--<button (click)="delete()">Delete</button>-->
+<!--</div>-->

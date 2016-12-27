@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
+import { HeroDetailsComponent } from './hero-details/hero-details.component';
+import { ModalModule } from 'ng2-bootstrap/modal';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBoDqVJN7nyuxkhR9XCAiqxed9y6Ot2dgg",
@@ -14,13 +16,15 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeroDetailsComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     FormsModule,
-    HttpModule
+    HttpModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
