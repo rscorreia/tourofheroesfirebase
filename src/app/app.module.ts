@@ -8,10 +8,10 @@ import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { ModalModule } from 'ng2-bootstrap/modal';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBoDqVJN7nyuxkhR9XCAiqxed9y6Ot2dgg",
-  authDomain: "learning-project-cb831.firebaseapp.com",
-  databaseURL: "https://learning-project-cb831.firebaseio.com",
-  storageBucket: "learning-project-cb831.appspot.com"
+  apiKey:         //
+  authDomain:     // Place Here
+  databaseURL:    // your Firebase keys
+  storageBucket:  //
 };
 
 @NgModule({

@@ -14,6 +14,7 @@ export class AppComponent {
   selectedHero: Hero;
   fb: AngularFire;
   selectedFBHero: FirebaseObjectObservable<Hero>;
+  newHeroName: string;
 
   constructor(af: AngularFire) {
     this.fb = af;
@@ -28,7 +29,18 @@ export class AppComponent {
   }
 
   addHero() : void {
-
+    var lastID: number = 0;
+    this.heroes.forEach(heroes => {
+      heroes.forEach(hero => {
+        if (hero.id > lastID) lastID = hero.id;
+      })
+    });
+    this.heroes.push({
+      "id": lastID + 1,
+      "name": this.newHeroName
+    }).then(_ => {
+      this.newHeroName = ""
+    });
   }
 
 
