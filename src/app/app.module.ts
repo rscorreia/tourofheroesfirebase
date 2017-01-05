@@ -6,25 +6,45 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { ModalModule } from 'ng2-bootstrap/modal';
+import { HeroesComponent } from './heroes/heroes.component';
+import { RouterModule }   from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const firebaseConfig = {
-  apiKey:         //
-  authDomain:     // Place Here
-  databaseURL:    // your Firebase keys
-  storageBucket:  //
+  apiKey:         "AIzaSyBoDqVJN7nyuxkhR9XCAiqxed9y6Ot2dgg",
+  authDomain:     "learning-project-cb831.firebaseapp.com",
+  databaseURL:    "https://learning-project-cb831.firebaseio.com",
+  storageBucket:  "learning-project-cb831.appspot.com"
 };
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroDetailsComponent
+    HeroDetailsComponent,
+    HeroesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     FormsModule,
     HttpModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    RouterModule.forRoot([
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'heroes',
+        component: HeroesComponent
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

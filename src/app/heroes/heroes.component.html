@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="col-md-8">
+    <h2>All Heroes</h2>
+    <table class="table table-striped">
+      <colgroup>
+        <col width="50">
+        <col>
+        <col width="25">
+      </colgroup>
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let hero of heroes | async">
+        <td>
+          {{hero.id}}
+        </td>
+        <td>
+          {{hero.name}}
+        </td>
+        <td>
+          <a class="glyphicon glyphicon-pencil" (click)="onSelect(hero.$key)"></a>
+        </td>
+      </tr>
+    </table>
+    <button type="button" class="btn btn-primary" (click)="smModal.show()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar</button>
+  </div>
+  <app-hero-details [FBHero]="selectedFBHero" [hero]="selectedHero"></app-hero-details>
+</div>
+
+<div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="smModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">New Hero</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon3">Name: </span>
+          <input [(ngModel)]="newHeroName" type="text" class="form-control" aria-describedby="basic-addon3">
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="smModal.hide(); addHero();"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
