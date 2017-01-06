@@ -1,4 +1,4 @@
-import {Component, OnInit, Input,} from '@angular/core';
+import {Component, Input } from '@angular/core';
 import { Hero } from './../model/hero';
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 
@@ -9,39 +9,33 @@ import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'ang
   templateUrl: './hero-details.component.html',
   //styleUrls: ['./hero-details.component.css']
 })
-export class HeroDetailsComponent implements OnInit {
+export class HeroDetailsComponent {
 
   @Input()
-  hero : Hero;
+  hero : FirebaseObjectObservable<Hero>;
 
-  @Input()
-  FBHero: FirebaseObjectObservable<Hero>;
+  updatedHero: Hero;
 
-  fb: AngularFire;
+  constructor(private af: AngularFire) {
 
-  constructor(af: AngularFire) {
-    this.fb = af;
   }
 
-  ngOnInit() {
-  }
 
   saveHero() : void {
-    this.FBHero.set({
-      "id": this.hero.id,
-      "name": this.hero.name
-    });
+    // this.hero.set({
+    //   "id": this.hero.id,
+    //   "name": this.hero.name
+    // });
   }
 
   deleteHero() : void {
-    this.FBHero.remove().then(_ =>
-      this.hero = null,
-      this.FBHero = null
-    );
+    // this.FBHero.remove().then(_ =>
+    //   this.hero = null,
+    //   this.FBHero = null
+    // );
   }
 
   cancel() : void {
     this.hero = null;
-    this.FBHero = null;
   }
 }

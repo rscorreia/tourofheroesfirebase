@@ -9,6 +9,7 @@ import { ModalModule } from 'ng2-bootstrap/modal';
 import { HeroesComponent } from './heroes/heroes.component';
 import { RouterModule }   from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeroService } from './hero.service';
 
 export const firebaseConfig = {
   apiKey:         "AIzaSyBoDqVJN7nyuxkhR9XCAiqxed9y6Ot2dgg",
@@ -46,7 +47,7 @@ export const firebaseConfig = {
       }
     ])
   ],
-  providers: [],
+  providers: [HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

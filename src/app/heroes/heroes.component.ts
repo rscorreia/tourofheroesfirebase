@@ -1,45 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { Hero } from './../model/hero';
+import { HeroService } from './../hero.service';
+
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent  {
+export class HeroesComponent implements OnInit {
 
-  title = 'app works!';
   heroes: FirebaseListObservable<Hero[]>;
-  selectedHero: Hero;
-  fb: AngularFire;
-  selectedFBHero: FirebaseObjectObservable<Hero>;
+  selectedHero: FirebaseObjectObservable<Hero>;
   newHeroName: string;
 
-  constructor(af: AngularFire) {
-    this.fb = af;
-    this.heroes = af.database.list('/heroes');
+  ngOnInit(): void {
+    this.getHeroes();
   }
 
-  onSelect(key: number): void {
-    this.selectedFBHero = this.fb.database.object('heroes/' + key);
-    this.selectedFBHero.subscribe(snapshot => {
-      this.selectedHero = snapshot
+  constructor(private heroService: HeroService) {
+
+  }
+
+  getHeroes(): void {
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+  }
+
+  onSelect(key: string): void {
+    this.heroService.getHero(key).then(hero => {
+      this.selectedHero = hero;
+      console.log('selectedHero: '+this.selectedHero);
     });
   }
 
   addHero() : void {
-    var lastID: number = 0;
-    this.heroes.forEach(heroes => {
-      heroes.forEach(hero => {
-        if (hero.id > lastID) lastID = hero.id;
-      })
-    });
-    this.heroes.push({
-      "id": lastID + 1,
-      "name": this.newHeroName
-    }).then(_ => {
-      this.newHeroName = ""
-    });
+    // var lastID: number = 0;
+    // this.heroes.forEach(heroes => {
+    //   heroes.forEach(hero => {
+    //     if (hero.id > lastID) lastID = hero.id;
+    //   })
+    // });
+    // this.heroes.push({
+    //   "id": lastID + 1,
+    //   "name": this.newHeroName
+    // }).then(_ => {
+    //   this.newHeroName = ""
+    // });
   }
 
 }

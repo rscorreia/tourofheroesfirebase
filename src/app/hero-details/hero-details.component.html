@@ -1,12 +1,12 @@
 <div class="col-md-4" *ngIf="hero">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">{{hero.name}} details <span class="badge">ID: {{hero.id}}</span></h3>
+      <h3 class="panel-title">{{(hero | async)?.name}} details <span class="badge">ID: {{(hero | async)?.id}}</span></h3>
     </div>
     <div class="panel-body">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon3">Name: </span>
-        <input [(ngModel)]="hero.name" type="text" class="form-control" aria-describedby="basic-addon3">
+        <input [ngModel]="(hero | async)?.name" type="text" class="form-control" aria-describedby="basic-addon3">
       </div>
       <br>
       <div class="text-right">
